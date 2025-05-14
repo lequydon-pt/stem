@@ -1,0 +1,399 @@
+        :root {
+            /* LQD School Logo Inspired Palette */
+            --lqd-green: #004D40; /* Dark Teal/Green from school logo (approximated) */
+            --lqd-yellow: #FFD700; /* Vibrant Yellow from school logo (approximated) */
+            
+            /* STEM Club Accent Colors */
+            --stem-red-accent: #D32F2F; /* Red from brain icon */
+            --stem-blue-accent: #1976D2; /* Blue from cube icon */
+            --stem-bright-green-accent: #388E3C; /* Green from STEAM text */
+            --stem-orange-accent: #F57C00; /* Orange from STEAM text */
+            --stem-palette-yellow: #FFB300; /* Yellow from palette icon */
+
+            /* UI Colors */
+            --lqd-light-bg: #F8F9FA; /* Very light gray for page background */
+            --lqd-text-dark: #212529; /* Dark text for readability */
+            --lqd-text-light: #FFFFFF; /* CHANGED to pure white for better contrast */
+            --lqd-card-bg: #ffffff; /* White for cards */
+            --lqd-header-text: var(--lqd-yellow);
+            --lqd-footer-bg: var(--lqd-green);
+            --lqd-footer-text: var(--lqd-yellow);
+
+            /* Navigation Tabs Styling */
+            --nav-link-bg: #E8F5E9; /* Light green, softer */
+            --nav-link-text: var(--lqd-green);
+            --nav-link-hover-bg: var(--lqd-yellow);
+            --nav-link-hover-text: var(--lqd-green);
+            --nav-link-active-bg: var(--lqd-yellow);
+            --nav-link-active-text: var(--lqd-green);
+            --nav-link-active-border: var(--stem-bright-green-accent);
+        }
+        body {
+            background-color: var(--lqd-light-bg);
+            color: var(--lqd-text-dark);
+            font-family: 'Arial', sans-serif; /* Consider a more modern sans-serif font if available */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: var(--lqd-green); /* Updated to LQD Green */
+            /* background-image: none; Remove gradient if using solid color */
+        }
+        main.container {
+            flex-grow: 1;
+        }
+        .tabs-navigation-container button.btn-load-grade,
+        .tabs-navigation-container a.btn-nav-grade {
+            transition: all 0.3s;
+            background-color: var(--nav-link-bg);
+            color: var(--nav-link-text);
+            border-bottom: 3px solid transparent;
+            font-weight: 600; /* Bolder text for tabs */
+        }
+        .tabs-navigation-container button.btn-load-grade:hover,
+        .tabs-navigation-container a.btn-nav-grade:hover {
+            background-color: var(--nav-link-hover-bg);
+            color: var(--nav-link-hover-text);
+        }
+        .tabs-navigation-container button.btn-load-grade.active {
+            background-color: var(--nav-link-active-bg);
+            color: var(--nav-link-active-text);
+            border-bottom-color: var(--nav-link-active-border);
+        }
+        
+        /* 
+         * Styles for dynamically loaded content and its accordions.
+         * These were previously also under #grade-content-placeholder, 
+         * but are now consolidated under .grade-content-wrapper for consistency,
+         * as all loaded grade HTML uses this class.
+         */
+        /* Accordion styles are now primarily handled under .grade-content-wrapper section below */
+
+        /* 
+         * Generic heading styles that were previously targeting #grade-content-placeholder directly.
+         * Most of these are now superseded by more specific styles under .grade-content-wrapper.
+         * Commenting them out to rely on the .grade-content-wrapper styles primarily.
+         * They can be uncommented if specific fallback styling for #grade-content-placeholder 
+         * (for content NOT using .grade-content-wrapper) is needed in the future.
+         */
+        /*
+        #grade-content-placeholder h1.grade-main-title {
+            font-size: 2rem; font-weight: 700; text-align: center; color: var(--lqd-green);
+            border-bottom: 2px solid var(--lqd-yellow); padding-bottom: 0.5rem; margin-top: 1rem; margin-bottom: 1.5rem;
+        }
+        #grade-content-placeholder h2.part-section-title {
+            font-size: 1.75rem; font-weight: 700; text-align: center; color: var(--lqd-green);
+            background-color: #FFF9C4; padding: 0.75rem; margin-top: 2rem; margin-bottom: 1.5rem; border-radius: 6px;
+            border-left: 5px solid var(--lqd-yellow);
+        }
+        #grade-content-placeholder h2.week-section-title {
+            font-size: 1.625rem; font-weight: 600; color: var(--lqd-green);
+            margin-top: 2rem; margin-bottom: 1rem; padding-top: 0.75rem; border-top: 2px solid var(--lqd-yellow);
+        }
+        #grade-content-placeholder h3.session-title {
+            font-size: 1.375rem; font-weight: 600; color: var(--stem-blue-accent);
+            margin-top: 1.5rem; margin-bottom: 0.75rem;
+        }
+        #grade-content-placeholder h4.lesson-title {
+            font-size: 1.25rem; font-weight: 500; color: var(--stem-orange-accent);
+            margin-top: 1rem; margin-bottom: 0.5rem;
+        }
+        #grade-content-placeholder h5.detail-title {
+            font-size: 1.125rem; font-weight: 600; color: var(--lqd-text-dark);
+            margin-top: 0.75rem; margin-bottom: 0.25rem;
+        }
+        #grade-content-placeholder ul { 
+            list-style-position: outside; margin-left: 1.5rem; margin-bottom: 0.75rem; 
+        }
+        #grade-content-placeholder .lesson-details ul { 
+            margin-left: 1rem; 
+        }
+        #grade-content-placeholder .results-section ul, 
+        #grade-content-placeholder .general-goals-section ul { 
+            margin-left: 1.5rem; 
+        }
+        */
+
+        @media print {
+            body { background-color: #fff; color: #000; font-size: 10pt; }
+            header, footer, .tabs-navigation-container, #printPageButton { display: none !important; }
+            main.container { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+            #grade-content-placeholder .bg-white.rounded-lg.shadow-md {
+                box-shadow: none !important; border: 1px solid #ccc; padding: 1rem !important;
+            }
+            #grade-content-placeholder .accordion-header i { display: none !important; }
+            #grade-content-placeholder .accordion-content,
+            #grade-content-placeholder .accordion-content.open {
+                max-height: none !important; overflow: visible !important; display: block !important;
+                padding: 0.5rem 1rem !important; border: 1px solid #ddd !important;
+                background-color: #fff !important;
+            }
+            #grade-content-placeholder .accordion-header.open { background-color: #f0f0f0 !important; }
+            #grade-content-placeholder h1, #grade-content-placeholder h2, #grade-content-placeholder h3, 
+            #grade-content-placeholder h4, #grade-content-placeholder h5 { color: #000 !important; page-break-after: avoid; }
+            #grade-content-placeholder .bg-blue-50, 
+            #grade-content-placeholder .bg-green-50, 
+            #grade-content-placeholder .bg-yellow-50, 
+            #grade-content-placeholder .bg-purple-50, 
+            #grade-content-placeholder .bg-red-50,
+            #grade-content-placeholder .bg-indigo-50 {
+                background-color: #fff !important; border-left-width: 2px !important;
+            }
+        } 
+
+/* Enhancements for Overview Section to make it more eye-catching */
+#overview-section {
+    /* Tailwind's shadow-xl is generally good. We can ensure a consistent and slightly softer shadow if preferred.
+       The HTML already applies border-l-4 and border-yellow-400 (which uses var(--lqd-yellow) effectively) */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    border: 1px solid #e9ecef; /* A very light overall border to define the card */
+    border-left-width: 4px; /* Ensure this is consistent with HTML or overrides if needed */
+    border-left-color: var(--lqd-yellow);
+}
+
+/* Titles within the overview grid (THỜI GIAN, THỜI LƯỢNG, CẤU TRÚC CÁC CẤP HỌC) */
+#overview-section .grid h3 {
+    font-weight: 700; /* Corresponds to Tailwind's font-bold */
+    color: var(--lqd-green); /* Ensuring consistency, though HTML has inline style */
+    margin-bottom: 0.5rem; /* Standardized bottom margin */
+    padding-top: 0.25rem;
+}
+
+/* Styling for the right-hand box ("CẤU TRÚC CÁC CẤP HỌC") */
+#overview-section .grid > div:nth-child(2) {
+    background-color: #FFFBEB; /* A soft, creamy yellow */
+    border: 1px solid #FDD835; /* A slightly richer yellow border (var(--lqd-yellow) is #FFD700) */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07); /* Enhanced shadow for a subtle lift */
+    border-radius: 0.375rem; /* Tailwind's rounded-md, or 0.5rem for rounded-lg */
+    padding: 1.25rem; /* Slightly more padding than default p-4 */
+    margin-top: 0; /* Reset margin if grid gap handles spacing */
+}
+
+/* Specific H3 inside the highlighted right box */
+#overview-section .grid > div:nth-child(2) h3 {
+   border-bottom: 2px solid var(--lqd-green);
+   padding-bottom: 0.5rem; /* Space between text and the new border */
+   margin-bottom: 1rem; /* More space after this title for the list */
+}
+
+/* Ensure icons in the highlighted box remain clear */
+#overview-section .grid > div:nth-child(2) h3 i,
+#overview-section .grid > div:nth-child(2) ul li i {
+    /* Colors are set via inline styles, which is fine. This is a placeholder if more specific icon styling is needed. */
+    /* Example: opacity: 0.9; */
+}
+
+/* === Styles for ALL Loaded Grade Content (Consistent with original Grade 1 design) === */
+.grade-content-wrapper {
+    /* background-color: #FFFDE7; /* Very light creamy yellow for overall Grade 1 section */
+    padding: 1rem; /* Add some overall padding if not already sufficient from parent */
+}
+
+/* Unified main title style for all grade content */
+.grade-content-wrapper .grade-main-title {
+    font-size: 2.2rem; /* Standardized size */
+    font-weight: 700;
+    text-align: center;
+    color: var(--lqd-green);
+    border-bottom: 2px solid var(--lqd-yellow);
+    padding-bottom: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem; 
+}
+
+.grade-content-wrapper .grade-main-title i {
+    color: var(--stem-blue-accent); 
+    margin-right: 0.5rem;
+}
+
+.grade-content-wrapper .general-goals-section {
+    background-color: #FFF3E0; /* Light peach/soft orange - consistent for all */
+    border-left: 4px solid var(--stem-orange-accent); /* Consistent border */
+    padding: 1.25rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.375rem; /* rounded-md */
+}
+
+.grade-content-wrapper .general-goals-section h3 {
+    color: var(--stem-orange-accent); /* Darker orange for the title - consistent for all */
+    font-size: 1.35rem; /* Slightly larger title - consistent for all */
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+/* Unified week section title style */
+.grade-content-wrapper .week-section-title {
+    background-color: var(--lqd-yellow); 
+    color: var(--lqd-green);
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 1.7rem; 
+    font-weight: 700; /* Made bolder for emphasis */
+    margin-top: 2.5rem; 
+    margin-bottom: 1.5rem; /* Added bottom margin for spacing */
+}
+
+.grade-content-wrapper .week-section-title i {
+    margin-right: 0.5rem; /* Space for icon if added via HTML */
+}
+
+
+/* Consolidated Accordion Styles for .grade-content-wrapper */
+.grade-content-wrapper .accordion .accordion-header {
+    display: flex; /* Added for alignment of title and icon */
+    justify-content: space-between; /* Added for alignment */
+    align-items: center; /* Added for alignment */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #E8F5E9; /* Light LQD Green tint */
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 2px;
+    font-weight: 500;
+    color: var(--lqd-green);
+}
+
+.grade-content-wrapper .accordion .accordion-header:hover {
+    background-color: #C8E6C9; /* Slightly darker green tint */
+}
+
+.grade-content-wrapper .accordion .accordion-header.open {
+    background-color: var(--lqd-yellow); /* Active accordion header in LQD Yellow */
+    color: var(--lqd-green);
+}
+
+/* Icon styling within accordion header */
+.grade-content-wrapper .accordion .accordion-header i {
+    transition: transform 0.3s;
+    font-size: 0.9em; /* Slightly smaller icon */
+    margin-left: 0.5rem; /* Space from text */
+}
+
+.grade-content-wrapper .accordion .accordion-header.open i {
+    transform: rotate(180deg);
+}
+
+/* Session title within accordion header */
+.grade-content-wrapper .accordion .accordion-header .session-title {
+    font-size: 1.375rem; /* Kept from original h3.session-title */
+    font-weight: 600;   /* Kept from original h3.session-title */
+    color: var(--lqd-green); /* Default color, can be overridden by .open state */
+    margin-top: 0; /* Reset margin as padding is handled by header */
+    margin-bottom: 0; /* Reset margin */
+}
+.grade-content-wrapper .accordion .accordion-header.open .session-title {
+    color: var(--lqd-green); /* Ensure text color contrasts with yellow bg */
+}
+.grade-content-wrapper .accordion .accordion-header.open .session-title span.text-sm {
+    color: var(--lqd-green); /* Ensure subtitle also has good contrast on yellow */
+    opacity: 0.85;
+}
+
+
+.grade-content-wrapper .accordion .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Added padding transition */
+    background-color: #fdfdfd; 
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem;
+    padding: 0 1rem; /* Initial padding for transition */
+}
+
+.grade-content-wrapper .accordion .accordion-content.open {
+    max-height: 4000px; /* Increased max-height */
+    padding: 1rem; /* Padding when open */
+}
+
+
+/* Styles for titles directly within .grade-content-wrapper (outside accordions, if any) */
+/* These are more specific than the #grade-content-placeholder hX styles */
+/* and will take precedence if the structure matches. */
+
+.grade-content-wrapper .part-section-title { /* If used within grade content */
+    font-size: 1.75rem; 
+    font-weight: 700; 
+    text-align: center; 
+    color: var(--lqd-green); 
+    background-color: #FFF9C4; 
+    padding: 0.75rem; 
+    margin-top: 2rem; 
+    margin-bottom: 1.5rem; 
+    border-radius: 6px;
+    border-left: 5px solid var(--lqd-yellow);
+}
+
+/* Session titles if they appear outside an accordion header directly in .grade-content-wrapper */
+.grade-content-wrapper .session-title {
+    font-size: 1.375rem; 
+    font-weight: 600; 
+    color: var(--stem-blue-accent); 
+    margin-top: 1.5rem; 
+    margin-bottom: 0.75rem;
+}
+.grade-content-wrapper .session-title i {
+    margin-right: 0.35rem;
+    color: var(--stem-blue-accent); /* Ensure icon color matches */
+}
+
+
+.grade-content-wrapper .lesson-title { /* Generic lesson title within grade content */
+    font-size: 1.25rem; 
+    font-weight: 500; 
+    color: var(--stem-orange-accent); 
+    margin-top: 1rem; 
+    margin-bottom: 0.5rem;
+}
+.grade-content-wrapper .lesson-title i {
+    margin-right: 0.35rem;
+}
+
+
+.grade-content-wrapper .lesson-details .detail-title {
+    font-size: 1.125rem; 
+    font-weight: 600; 
+    color: var(--lqd-text-dark);
+    margin-top: 0.75rem; 
+    margin-bottom: 0.25rem;
+    /* border-bottom: 1px dashed #eee; */ /* Optional: subtle separator */
+    /* padding-bottom: 0.25rem; */
+}
+.grade-content-wrapper .lesson-details .detail-title i {
+    margin-right: 0.35rem;
+    color: var(--lqd-text-dark);
+}
+
+
+.grade-content-wrapper ul {
+    list-style-position: outside; 
+    margin-left: 1.5rem; /* Default for general lists */
+    margin-bottom: 1rem; /* Increased bottom margin for readability */
+}
+.grade-content-wrapper ul li {
+    margin-bottom: 0.35rem; /* Space between list items */
+    line-height: 1.5;
+}
+.grade-content-wrapper .lesson-details ul { /* More specific for lesson details */
+    margin-left: 1.25rem; /* Slightly less indent for nested lists */
+    list-style-type: disc; /* Default to disc */
+}
+.grade-content-wrapper .lesson-details ul ul { /* Nested lists under details */
+    margin-left: 1rem;
+    list-style-type: circle; /* Change marker for deeper nesting */
+}
+
+
+.grade-content-wrapper .results-section ul, 
+.grade-content-wrapper .general-goals-section ul { 
+    margin-left: 1.5rem; 
+}
+
+/* Ensure consistent styling for subtitles in session titles within accordions */
+.grade-content-wrapper .session-title .text-sm.text-gray-500 {
+    color: var(--lqd-text-dark); /* Default for non-open state */
+    opacity: 0.9;
+}
+/* Color is handled by .accordion-header.open .session-title span.text-sm for open state */
